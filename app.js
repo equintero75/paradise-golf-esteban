@@ -163,6 +163,122 @@ function renderComparisonTable() {
   document.getElementById("comparisonTable").innerHTML = buildComparisonTable();
 }
 
+// ─── Quiz ────────────────────────────────────────────────────────────────────
+
+function initQuiz() {
+  const trigger = document.getElementById("quizTrigger");
+  const panel   = document.getElementById("quizPanel");
+
+  trigger.addEventListener("click", () => {
+    const isOpen = panel.classList.contains("open");
+    if (isOpen) {
+      closeQuiz();
+    } else {
+      panel.classList.add("open");
+      panel.setAttribute("aria-hidden", "false");
+      trigger.classList.add("active");
+      renderQuizStep(0, {});
+    }
+  });
+}
+
+function closeQuiz() {
+  const panel   = document.getElementById("quizPanel");
+  const trigger = document.getElementById("quizTrigger");
+  panel.classList.remove("open");
+  panel.setAttribute("aria-hidden", "true");
+  trigger.classList.remove("active");
+}
+
+function renderQuizStep(stepIndex, scores) {
+  const inner    = document.getElementById("quizInner");
+  const question = QUIZ.questions[stepIndex];
+  const total    = QUIZ.questions.length;
+
+  const progressDots = QUIZ.questions.map((_, i) =>
+    `<span class="progress-dot ${i < stepIndex ? "done" : i === stepIndex ? "active" : ""}"></span>`
+  ).join("");
+
+  const optionButtons = question.options.map(opt => `
+    <button class="quiz-option" data-step="${stepIndex}" data-scores='${JSON.stringify(opt.scores)}'>
+      <span class="option-icon">${opt.icon}</span>
+      <span class="option-label">${opt.label}</span>
+    </button>
+  `).join("");
+
+  inner.innerHTML = `
+    <div class="quiz-step">
+      <div class="quiz-progress">
+        <span class="progress-label">Question ${stepIndex + 1} of ${total}</span>
+        <div class="progress-dots">${progressDots}</div>
+      </div>
+      <p class="quiz-question">${question.text}</p>
+      <div class="quiz-options">${optionButtons}</div>
+    </div>
+  `;
+
+  inner.querySelectorAll(".quiz-option").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const picked     = JSON.parse(btn.dataset.scores);
+      const newScores  = {};
+
+      PLANS.forEach(p => {
+        newScores[p.id] = (scores[p.id] || 0) + (picked[p.id] || 0);
+      });
+
+      const nextStep = stepIndex + 1;
+      if (nextStep < QUIZ.questions.length) {
+        renderQuizStep(nextStep, newScores);
+      } else {
+        renderQuizResult(newScores);
+      }
+    });
+  });
+}
+
+function renderQuizResult(scores) {
+  const inner = document.getElementById("quizInner");
+
+  // Find the plan with the highest score (tie → first one wins, which is cheaper)
+  const winner = PLANS.reduce((best, plan) =>
+    (scores[plan.id] || 0) > (scores[best.id] || 0) ? plan : best
+  , PLANS[0]);
+
+  const reason = QUIZ.reasons[winner.id];
+
+  inner.innerHTML = `
+    <div class="quiz-result">
+      <p class="result-label">We recommend</p>
+      <div class="result-plan-name" style="color:${winner.accentColor}">
+        ${winner.name} Cardholder
+      </div>
+      <p class="result-reason">${reason}</p>
+      <div class="result-actions">
+        <button class="result-scroll-btn" id="scrollToplan" data-plan="${winner.id}"
+          style="background:${winner.accentColor}">
+          View ${winner.name} plan ↓
+        </button>
+        <button class="result-retake-btn" id="retakeQuiz">Retake quiz</button>
+      </div>
+    </div>
+  `;
+
+  document.getElementById("scrollToplan").addEventListener("click", () => {
+    closeQuiz();
+    const card = document.querySelector(`.plan-card[data-plan="${winner.id}"]`);
+    if (card) {
+      card.scrollIntoView({ behavior: "smooth", block: "center" });
+      card.classList.add("highlighted");
+      setTimeout(() => card.classList.remove("highlighted"), 2000);
+    }
+  });
+
+  document.getElementById("retakeQuiz").addEventListener("click", () => {
+    renderQuizStep(0, {});
+  });
+}
+
 renderCards(currentSeason);
 initSeasonTabs();
 renderComparisonTable();
+initQuiz();

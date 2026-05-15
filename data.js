@@ -61,6 +61,90 @@ const COMPARISON = [
   },
 ];
 
+// ─── Quiz ─────────────────────────────────────────────────────────────────────
+// Each answer carries a `scores` object that adds points to each plan id.
+// The plan with the highest total score wins.
+const QUIZ = {
+  questions: [
+    {
+      id: "frequency",
+      text: "How often do you plan to play?",
+      options: [
+        {
+          label: "A few times a season",
+          icon: "🌿",
+          scores: { silver: 1, gold: 0, platinum: 0, monthly: 3 },
+        },
+        {
+          label: "Once or twice a month",
+          icon: "⛳",
+          scores: { silver: 3, gold: 2, platinum: 1, monthly: 1 },
+        },
+        {
+          label: "Every week or more",
+          icon: "🏆",
+          scores: { silver: 1, gold: 2, platinum: 3, monthly: 0 },
+        },
+      ],
+    },
+    {
+      id: "season",
+      text: "When do you want to play?",
+      options: [
+        {
+          label: "Just the summer season",
+          icon: "☀️",
+          scores: { silver: 1, gold: 1, platinum: 1, monthly: 3 },
+        },
+        {
+          label: "Just the winter season",
+          icon: "❄️",
+          scores: { silver: 1, gold: 1, platinum: 1, monthly: 3 },
+        },
+        {
+          label: "Year-round",
+          icon: "📅",
+          scores: { silver: 2, gold: 2, platinum: 2, monthly: 0 },
+        },
+      ],
+    },
+    {
+      id: "priority",
+      text: "What matters most to you?",
+      options: [
+        {
+          label: "Keeping my costs low",
+          icon: "💰",
+          scores: { silver: 3, gold: 1, platinum: 0, monthly: 2 },
+        },
+        {
+          label: "Getting complimentary rounds",
+          icon: "🎁",
+          scores: { silver: 0, gold: 3, platinum: 2, monthly: 0 },
+        },
+        {
+          label: "Maximum perks & event savings",
+          icon: "⭐",
+          scores: { silver: 0, gold: 1, platinum: 3, monthly: 0 },
+        },
+        {
+          label: "Flexibility — no long commitment",
+          icon: "🔓",
+          scores: { silver: 0, gold: 0, platinum: 0, monthly: 3 },
+        },
+      ],
+    },
+  ],
+
+  // Short explanation shown on the result screen, keyed by plan id
+  reasons: {
+    silver:   "You play regularly and want solid savings without paying for perks you won't use. Silver gives you discounts and coupons at a price that makes sense.",
+    gold:     "You play often enough to get real value from complimentary rounds. Gold's Heritage Isles rounds alone can cover the difference in cost.",
+    platinum: "You play frequently and want everything — more complimentary rounds, bigger event savings, and Preferred Event Pricing. Platinum is built for you.",
+    monthly:  "You want to play on your own terms without locking in for a full season. Monthly lets you start and stop whenever it suits your schedule.",
+  },
+};
+
 // ─── Seasons ───────────────────────────────────────────────────────────────────
 const SEASONS = {
   yearRound: {
