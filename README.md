@@ -12,25 +12,6 @@ The card layout lets users scan the plans side by side without scrolling through
 
 Below the cards, a full benefit comparison table gives users a second, more analytical view of the same information. Cards are great for first impressions and emotional buy-in, but when someone is close to a decision they want to compare directly — row by row — without having to mentally hold one plan while reading another. The table makes that effortless: a checkmark means the plan includes it, a red cross means it doesn't, and a short note under each checkmark explains the exact value (how many rounds, how much off, which kind of discount). This way a user can immediately see where the value gap is between, say, Silver and Gold, or why Platinum commands a higher price — without having to read paragraphs of fine print.
 
-## File structure
-
-```
-index.html   — layout skeleton, no logic
-data.js      — all membership data hardcoded as JS constants
-style.css    — visual design, brand colors, responsive grid
-app.js       — builds cards from data, handles season toggle and expand/collapse
-README.md    — this file
-```
-
-## How to customize
-
-- **Change prices or benefits** — edit `data.js`. Each plan has a `pricing` object with `yearRound`, `summer`, and `winter` keys, and a `benefits` object with `cardholder` and `additional` arrays.
-- **Change card highlight color** — each plan in `data.js` has an `accentColor` field for the top bar.
-- **Add/remove a plan** — add or remove an object from the `PLANS` array in `data.js`. No other file needs to change.
-- **Change the tagline under a plan name** — edit the `tagline` field in `data.js`.
-- **Add a badge** (like "Most Popular") — add a `badge` field to any plan object in `data.js`.
-- **Brand color** — defined as `--green: #004D00` at the top of `style.css` and used throughout.
-
 ## What I would improve with more time
 
 - A short "Help me choose" quiz that asks 2–3 questions (how often do you play? do you want year-round or seasonal?) and scrolls to or highlights the recommended plan.
