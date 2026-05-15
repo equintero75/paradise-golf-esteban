@@ -14,16 +14,6 @@ Rather than recreating the flyer as a static table, I focused on making the info
 
 I also added a short **"Help me choose" quiz** that asks three questions about frequency, season preference, and priorities, then recommends the most fitting plan and scrolls to it.
 
-## File structure
-
-```
-index.html   — layout
-data.js      — all membership data and quiz questions hardcoded
-style.css    — design and brand colors
-app.js       — all interactivity
-README.md    — this file
-```
-
 ## With more time
 
-I would invest in UX/UI improvements: smoother transitions when prices update between seasons, a more polished mobile experience, better visual hierarchy on the comparison table for quick scanning, and a "Select this plan" call-to-action flow on each card. The quiz result screen could also feel more celebratory and less utilitarian.
+I would invest in UX/UI improvements: smoother transitions when prices update between seasons, better visual hierarchy on the comparison table for quick scanning, and a "Select this plan" call-to-action flow on each card. The quiz result screen could also feel more celebratory and less utilitarian.
