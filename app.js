@@ -107,26 +107,50 @@ function initSeasonTabs() {
   });
 }
 
-function buildComparisonTable() {
-  const planIds = PLANS.map(p => p.id);
+// Plans selected for comparison — all shown by default
+let selectedPlanIds = PLANS.map(p => p.id);
 
-  // Column headers with accent color dot
-  const headerCells = PLANS.map(p =>
+function buildComparisonControls() {
+  const toggles = PLANS.map(p => {
+    const isActive = selectedPlanIds.includes(p.id);
+    return `
+      <button
+        class="compare-toggle ${isActive ? "active" : ""}"
+        data-plan-id="${p.id}"
+        style="--accent: ${p.accentColor}"
+        aria-pressed="${isActive}"
+      >${p.name}</button>`;
+  }).join("");
+
+  return `
+    <div class="compare-controls">
+      <span class="compare-label">Select plans to compare:</span>
+      <div class="compare-toggles">${toggles}</div>
+    </div>`;
+}
+
+function buildComparisonTable() {
+  const plans = PLANS.filter(p => selectedPlanIds.includes(p.id));
+
+  if (plans.length < 2) {
+    return `<p class="compare-hint">Select at least 2 plans to compare.</p>`;
+  }
+
+  const headerCells = plans.map(p =>
     `<th>
       <span class="col-dot" style="background:${p.accentColor}"></span>
       ${p.name}
     </th>`
   ).join("");
 
-  // Build rows grouped by category
   const bodyRows = COMPARISON.map(group => {
     const groupHeader = `
       <tr class="category-row">
-        <td colspan="${PLANS.length + 1}">${group.category}</td>
+        <td colspan="${plans.length + 1}">${group.category}</td>
       </tr>`;
 
     const dataRows = group.rows.map(row => {
-      const cells = planIds.map(id => {
+      const cells = plans.map(({ id }) => {
         const has  = row.plans[id];
         const note = row.notes?.[id] ?? "";
         return has
@@ -147,7 +171,7 @@ function buildComparisonTable() {
 
   return `
     <div class="comparison-wrapper">
-      <table class="comparison-table" role="table" aria-label="Full plan comparison">
+      <table class="comparison-table" role="table" aria-label="Plan comparison">
         <thead>
           <tr>
             <th class="corner-cell">Benefit</th>
@@ -160,7 +184,24 @@ function buildComparisonTable() {
 }
 
 function renderComparisonTable() {
-  document.getElementById("comparisonTable").innerHTML = buildComparisonTable();
+  const container = document.getElementById("comparisonTable");
+  container.innerHTML = buildComparisonControls() + buildComparisonTable();
+
+  container.querySelectorAll(".compare-toggle").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const id = btn.dataset.planId;
+
+      if (selectedPlanIds.includes(id)) {
+        // Don't allow deselecting below 2
+        if (selectedPlanIds.length <= 2) return;
+        selectedPlanIds = selectedPlanIds.filter(p => p !== id);
+      } else {
+        selectedPlanIds = [...selectedPlanIds, id];
+      }
+
+      renderComparisonTable();
+    });
+  });
 }
 
 // ─── Quiz ────────────────────────────────────────────────────────────────────

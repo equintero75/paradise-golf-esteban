@@ -321,6 +321,7 @@ body {
 .plans-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  align-items: start;
   gap: 1.25rem;
   max-width: 1000px;
   margin: 1.75rem auto 0;
@@ -762,6 +763,62 @@ body {
 
 .plan-card.highlighted {
   animation: highlight-pulse 1.8s ease forwards;
+}
+
+/* ─── Comparison controls ──────────────────────────────────────── */
+.compare-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.compare-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.compare-toggles {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.compare-toggle {
+  padding: 0.4rem 1rem;
+  border-radius: 50px;
+  border: 2px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition),
+              opacity var(--transition), transform var(--transition);
+}
+
+.compare-toggle:hover {
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  transform: translateY(-1px);
+}
+
+.compare-toggle.active {
+  background: var(--accent);
+  color: var(--white);
+}
+
+.compare-toggle:not(.active) {
+  opacity: 0.6;
+}
+
+.compare-hint {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  padding: 2rem 0;
 }
 
 /* ─── Comparison table section ─────────────────────────────────── */
