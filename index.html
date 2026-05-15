@@ -9,19 +9,111 @@
 <body>
 
   <header class="site-header">
+
+    <!-- Gold accent line at very top -->
+    <div class="header-gold-bar" aria-hidden="true"></div>
+
     <div class="header-inner">
-      <div class="logo">
-        <span class="logo-icon">⛳</span>
-        <span class="logo-text">Paradise Golf</span>
+
+      <!-- Logo row -->
+      <div class="header-topbar">
+        <div class="logo">
+          <span class="logo-text">Paradise Golf</span>
+        </div>
+        <a href="#plans" class="header-label">Membership Plans ↓</a>
       </div>
-      <p class="header-tagline">Find the membership that fits your game.</p>
+
+      <!-- Hero text -->
+      <div class="header-hero">
+        <div class="header-copy">
+          <p class="header-eyebrow">Discover your tier</p>
+          <h1 class="header-headline">Every golfer<br>deserves the<br>right plan.</h1>
+          <p class="header-tagline">Four membership tiers, flexible seasonal pricing,<br>and benefits built around how you actually play.</p>
+        </div>
+
+        <!-- Decorative SVG panel -->
+        <div class="header-deco" aria-hidden="true">
+          <svg viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="130" cy="130" r="120" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
+            <circle cx="130" cy="130" r="90"  stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
+            <circle cx="130" cy="130" r="60"  stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
+            <circle cx="130" cy="130" r="30"  fill="rgba(255,255,255,0.04)"/>
+            <!-- flag pole -->
+            <line x1="130" y1="40" x2="130" y2="190" stroke="rgba(255,255,255,0.5)" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- flag -->
+            <polygon points="130,40 175,62 130,84" fill="#c9a227" opacity="0.9"/>
+            <!-- ground arc -->
+            <path d="M100 190 Q130 202 160 190" stroke="rgba(255,255,255,0.3)" stroke-width="2" stroke-linecap="round" fill="none"/>
+          </svg>
+        </div>
+      </div>
+
     </div>
+
+    <!-- Stats strip -->
+    <div class="header-stats" aria-label="Quick facts">
+      <div class="stat-item">
+        <span class="stat-number">4</span>
+        <span class="stat-label">Membership tiers</span>
+      </div>
+      <div class="stat-divider" aria-hidden="true"></div>
+      <div class="stat-item">
+        <span class="stat-number">3</span>
+        <span class="stat-label">Seasonal pricing options</span>
+      </div>
+      <div class="stat-divider" aria-hidden="true"></div>
+      <div class="stat-item">
+        <span class="stat-number">10+</span>
+        <span class="stat-label">Cardholder benefits</span>
+      </div>
+      <div class="stat-divider" aria-hidden="true"></div>
+      <div class="stat-item">
+        <span class="stat-number">50%</span>
+        <span class="stat-label">Off value tee times</span>
+      </div>
+    </div>
+
   </header>
 
   <main>
 
+    <!-- Why become a member -->
+    <section class="why-section" aria-label="Why become a member">
+      <div class="why-inner">
+        <p class="why-eyebrow">Why join Paradise Golf?</p>
+        <h2 class="why-headline">More value every time you play</h2>
+        <div class="why-grid">
+
+          <div class="why-card">
+            <div class="why-icon">💰</div>
+            <h3 class="why-title">Save on every round</h3>
+            <p class="why-desc">Preferred Card Rates take $5–$30 off public rates each visit. The membership pays for itself faster than you think.</p>
+          </div>
+
+          <div class="why-card">
+            <div class="why-icon">🎁</div>
+            <h3 class="why-title">Complimentary rounds included</h3>
+            <p class="why-desc">Gold and Platinum members receive free rounds at Heritage Isles and Citrus National — top courses, no extra charge.</p>
+          </div>
+
+          <div class="why-card">
+            <div class="why-icon">📅</div>
+            <h3 class="why-title">Pricing that fits your schedule</h3>
+            <p class="why-desc">Only playing in summer? Just the winter season? There's a plan for that. No need to pay for months you won't use.</p>
+          </div>
+
+          <div class="why-card">
+            <div class="why-icon">⭐</div>
+            <h3 class="why-title">Access to premier courses</h3>
+            <p class="why-desc">Exclusive member-only offers at premier clubs, Double Eagle coupons, and Play Day event discounts all year long.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
     <!-- Season selector -->
-    <section class="season-selector" aria-label="Select a season">
+    <section class="season-selector" id="plans" aria-label="Select a season">
       <p class="selector-label">See pricing for:</p>
       <div class="season-tabs" role="tablist">
         <button class="season-tab active" role="tab" data-season="yearRound" aria-selected="true">
@@ -36,6 +128,20 @@
           Winter
           <span class="season-sublabel">Nov '26 – Apr '27</span>
         </button>
+      </div>
+    </section>
+
+    <!-- Help me choose quiz -->
+    <section class="quiz-section" id="quizSection" aria-label="Help me choose a plan">
+      <button class="quiz-trigger" id="quizTrigger">
+        <span class="quiz-trigger-icon">🤔</span>
+        Not sure which plan fits you? <strong>Help me choose →</strong>
+      </button>
+
+      <div class="quiz-panel" id="quizPanel" aria-hidden="true">
+        <div class="quiz-inner" id="quizInner">
+          <!-- Steps and result injected by app.js -->
+        </div>
       </div>
     </section>
 
