@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paradise Golf Memberships</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">⛳</span>
+        <span class="logo-text">Paradise Golf</span>
+      </div>
+      <p class="header-tagline">Find the membership that fits your game.</p>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Season selector -->
+    <section class="season-selector" aria-label="Select a season">
+      <p class="selector-label">See pricing for:</p>
+      <div class="season-tabs" role="tablist">
+        <button class="season-tab active" role="tab" data-season="yearRound" aria-selected="true">
+          Year-Round
+          <span class="season-sublabel">May '26 – Apr '27</span>
+        </button>
+        <button class="season-tab" role="tab" data-season="summer" aria-selected="false">
+          Summer
+          <span class="season-sublabel">May – Oct '26</span>
+        </button>
+        <button class="season-tab" role="tab" data-season="winter" aria-selected="false">
+          Winter
+          <span class="season-sublabel">Nov '26 – Apr '27</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Plan cards -->
+    <section class="plans-grid" id="plansGrid" aria-label="Membership plans">
+      <!-- Cards are injected by app.js -->
+    </section>
+
+    <!-- Benefit comparison note -->
+    <p class="footer-note">
+      All plans include Premier Course Access, Merchandise Discounts, Online Tee Time Booking, and Loyalty Rewards.
+    </p>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Paradise Golf. All rights reserved.</p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

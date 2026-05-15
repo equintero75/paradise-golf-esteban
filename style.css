@@ -1,0 +1,372 @@
+/* ─── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --green:        #004D00;
+  --green-mid:    #006400;
+  --green-light:  #e8f0e8;
+  --green-hover:  #003800;
+  --text:         #1a1a1a;
+  --text-muted:   #5a5a5a;
+  --border:       #dde5dd;
+  --bg:           #f4f7f4;
+  --white:        #ffffff;
+  --radius:       14px;
+  --shadow:       0 2px 12px rgba(0,0,0,0.08);
+  --shadow-hover: 0 6px 24px rgba(0,0,0,0.13);
+  --transition:   0.22s ease;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* ─── Header ───────────────────────────────────────────────────── */
+.site-header {
+  background: var(--green);
+  color: var(--white);
+  padding: 2.5rem 1.5rem 2rem;
+  text-align: center;
+}
+
+.header-inner { max-width: 900px; margin: 0 auto; }
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.logo-icon { font-size: 1.6rem; }
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.header-tagline {
+  font-size: 1rem;
+  opacity: 0.82;
+  margin-top: 0.25rem;
+}
+
+/* ─── Season Selector ──────────────────────────────────────────── */
+.season-selector {
+  max-width: 900px;
+  margin: 2rem auto 0;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+
+.selector-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.season-tabs {
+  display: inline-flex;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 50px;
+  padding: 4px;
+  gap: 4px;
+  box-shadow: var(--shadow);
+}
+
+.season-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem 1.4rem;
+  border: none;
+  background: transparent;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.3;
+}
+
+.season-tab .season-sublabel {
+  font-size: 0.68rem;
+  font-weight: 400;
+  opacity: 0.75;
+}
+
+.season-tab:hover { color: var(--green); }
+
+.season-tab.active {
+  background: var(--green);
+  color: var(--white);
+}
+
+.season-tab.active .season-sublabel { opacity: 0.8; }
+
+/* ─── Plans Grid ───────────────────────────────────────────────── */
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1.25rem;
+  max-width: 1000px;
+  margin: 1.75rem auto 0;
+  padding: 0 1.5rem;
+}
+
+/* ─── Plan Card ────────────────────────────────────────────────── */
+.plan-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1.5px solid var(--border);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow var(--transition), transform var(--transition);
+  position: relative;
+}
+
+.plan-card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-3px);
+}
+
+/* colored top bar per plan */
+.card-accent-bar {
+  height: 5px;
+  width: 100%;
+}
+
+.card-header {
+  padding: 1.25rem 1.25rem 0.75rem;
+  position: relative;
+}
+
+.badge {
+  display: inline-block;
+  background: var(--green);
+  color: var(--white);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 50px;
+  margin-bottom: 0.5rem;
+}
+
+.plan-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.plan-tagline {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+  line-height: 1.4;
+}
+
+/* ─── Pricing block ────────────────────────────────────────────── */
+.card-pricing {
+  padding: 1rem 1.25rem;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--green-light);
+}
+
+.price-main {
+  display: flex;
+  align-items: baseline;
+  gap: 0.2rem;
+}
+
+.price-dollar {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--green);
+  line-height: 1;
+}
+
+.price-amount {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--green);
+  line-height: 1;
+}
+
+.price-period {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.price-total {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+}
+
+.price-unavailable {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-style: italic;
+  padding: 0.35rem 0;
+}
+
+/* ─── Highlights list ──────────────────────────────────────────── */
+.card-highlights {
+  padding: 1rem 1.25rem;
+  flex: 1;
+}
+
+.highlights-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+  margin-bottom: 0.6rem;
+}
+
+.highlights-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.highlights-list li {
+  font-size: 0.82rem;
+  color: var(--text);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  line-height: 1.35;
+}
+
+.highlights-list li::before {
+  content: "✓";
+  color: var(--green-mid);
+  font-weight: 700;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ─── Expand/Collapse benefits ─────────────────────────────────── */
+.expand-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  width: 100%;
+  padding: 0.8rem;
+  border: none;
+  border-top: 1px solid var(--border);
+  background: transparent;
+  color: var(--green);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.expand-btn:hover { background: var(--green-light); }
+
+.expand-icon {
+  display: inline-block;
+  transition: transform var(--transition);
+  font-style: normal;
+  font-size: 0.75rem;
+}
+
+.expand-btn[aria-expanded="true"] .expand-icon {
+  transform: rotate(180deg);
+}
+
+/* ─── Full benefits panel ──────────────────────────────────────── */
+.benefits-panel {
+  display: none;
+  padding: 1rem 1.25rem 1.25rem;
+  border-top: 1px solid var(--border);
+  background: #fafcfa;
+}
+
+.benefits-panel.open { display: block; }
+
+.benefits-section-title {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--green-mid);
+  margin-bottom: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.benefits-section-title:first-child { margin-top: 0; }
+
+.benefit-row {
+  display: flex;
+  flex-direction: column;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.benefit-row:last-child { border-bottom: none; }
+
+.benefit-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.benefit-value {
+  font-size: 0.82rem;
+  color: var(--text);
+  margin-top: 0.15rem;
+}
+
+.benefit-value.none { color: #aaa; font-style: italic; }
+
+/* ─── Footer note ──────────────────────────────────────────────── */
+.footer-note {
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  max-width: 700px;
+  margin: 1.5rem auto 2rem;
+  padding: 0 1.5rem;
+}
+
+/* ─── Site footer ──────────────────────────────────────────────── */
+.site-footer {
+  background: var(--green);
+  color: rgba(255,255,255,0.6);
+  text-align: center;
+  font-size: 0.78rem;
+  padding: 1.25rem;
+  margin-top: 2rem;
+}
+
+/* ─── Responsive ───────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .plans-grid { grid-template-columns: 1fr; }
+
+  .season-tabs { flex-direction: column; border-radius: var(--radius); }
+  .season-tab  { border-radius: 10px; }
+
+  .price-amount { font-size: 1.9rem; }
+}
