@@ -10,6 +10,8 @@ The brief said to avoid recreating the flyer as a table and to think about makin
 
 The card layout lets users scan the plans side by side without scrolling through a dense table. Key differentiators surface at a glance (complimentary rounds, coupon counts, Play Day savings), and the full benefit detail is available on demand behind an expand button — it's there when you want it, out of the way when you don't.
 
+Below the cards, a full benefit comparison table gives users a second, more analytical view of the same information. Cards are great for first impressions and emotional buy-in, but when someone is close to a decision they want to compare directly — row by row — without having to mentally hold one plan while reading another. The table makes that effortless: a checkmark means the plan includes it, a red cross means it doesn't, and a short note under each checkmark explains the exact value (how many rounds, how much off, which kind of discount). This way a user can immediately see where the value gap is between, say, Silver and Gold, or why Platinum commands a higher price — without having to read paragraphs of fine print.
+
 ## File structure
 
 ```

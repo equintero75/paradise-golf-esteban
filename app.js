@@ -107,5 +107,62 @@ function initSeasonTabs() {
   });
 }
 
+function buildComparisonTable() {
+  const planIds = PLANS.map(p => p.id);
+
+  // Column headers with accent color dot
+  const headerCells = PLANS.map(p =>
+    `<th>
+      <span class="col-dot" style="background:${p.accentColor}"></span>
+      ${p.name}
+    </th>`
+  ).join("");
+
+  // Build rows grouped by category
+  const bodyRows = COMPARISON.map(group => {
+    const groupHeader = `
+      <tr class="category-row">
+        <td colspan="${PLANS.length + 1}">${group.category}</td>
+      </tr>`;
+
+    const dataRows = group.rows.map(row => {
+      const cells = planIds.map(id => {
+        const has  = row.plans[id];
+        const note = row.notes?.[id] ?? "";
+        return has
+          ? `<td class="cell-yes" aria-label="Included">
+               <span class="check">✓</span>
+               ${note ? `<span class="cell-note">${note}</span>` : ""}
+             </td>`
+          : `<td class="cell-no" aria-label="Not included">
+               <span class="cross">✕</span>
+             </td>`;
+      }).join("");
+
+      return `<tr><td class="benefit-name">${row.label}</td>${cells}</tr>`;
+    }).join("");
+
+    return groupHeader + dataRows;
+  }).join("");
+
+  return `
+    <div class="comparison-wrapper">
+      <table class="comparison-table" role="table" aria-label="Full plan comparison">
+        <thead>
+          <tr>
+            <th class="corner-cell">Benefit</th>
+            ${headerCells}
+          </tr>
+        </thead>
+        <tbody>${bodyRows}</tbody>
+      </table>
+    </div>`;
+}
+
+function renderComparisonTable() {
+  document.getElementById("comparisonTable").innerHTML = buildComparisonTable();
+}
+
 renderCards(currentSeason);
 initSeasonTabs();
+renderComparisonTable();

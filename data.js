@@ -1,3 +1,67 @@
+// ─── Benefit comparison matrix ────────────────────────────────────────────────
+// Each row has a label, an optional note shown under the ✓, and a `plans`
+// object keyed by plan id. Set to true for a checkmark, false for an X.
+const COMPARISON = [
+  {
+    category: "Cardholder Benefits",
+    rows: [
+      {
+        label: "Complimentary Rounds",
+        plans: { silver: false, gold: true, platinum: true, monthly: false },
+        notes: { gold: "2 rounds at Heritage Isles", platinum: "4 rounds across Heritage Isles & Citrus National" },
+      },
+      {
+        label: "Double Eagle Coupons",
+        plans: { silver: true, gold: true, platinum: true, monthly: true },
+        notes: { silver: "2 seasonal", gold: "2 seasonal", platinum: "2 seasonal", monthly: "1 monthly" },
+      },
+      {
+        label: "Preferred Card Rates",
+        plans: { silver: true, gold: true, platinum: true, monthly: true },
+        notes: { silver: "$5–$30 off", gold: "$5–$30 off", platinum: "$5–$30 off", monthly: "$5–$30 off rack rates" },
+      },
+      {
+        label: "Members for a Day Access",
+        plans: { silver: true, gold: true, platinum: true, monthly: true },
+        notes: { silver: "Under $100", gold: "Under $100", platinum: "Under $100", monthly: "Under $100" },
+      },
+    ],
+  },
+  {
+    category: "Additional Benefits",
+    rows: [
+      {
+        label: "Play Day Discounts",
+        plans: { silver: true, gold: true, platinum: true, monthly: true },
+        notes: { silver: "Up to $10 off", gold: "Up to $10 off", platinum: "Up to $20 off", monthly: "Up to $10 off" },
+      },
+      {
+        label: "Preferred Event Pricing",
+        plans: { silver: false, gold: false, platinum: true, monthly: false },
+      },
+      {
+        label: "Premier Course Access",
+        plans: { silver: true, gold: true, platinum: true, monthly: true },
+      },
+      {
+        label: "Merchandise Discounts",
+        plans: { silver: true, gold: true, platinum: true, monthly: true },
+        notes: { silver: "10% off", gold: "10% off", platinum: "10% off", monthly: "10% off" },
+      },
+      {
+        label: "Online Tee Time Booking",
+        plans: { silver: true, gold: true, platinum: true, monthly: true },
+        notes: { silver: "Up to 50% off", gold: "Up to 50% off", platinum: "Up to 50% off", monthly: "Up to 50% off" },
+      },
+      {
+        label: "Loyalty Rewards Program",
+        plans: { silver: true, gold: true, platinum: true, monthly: true },
+      },
+    ],
+  },
+];
+
+// ─── Seasons ───────────────────────────────────────────────────────────────────
 const SEASONS = {
   yearRound: {
     label: "Year-Round",
