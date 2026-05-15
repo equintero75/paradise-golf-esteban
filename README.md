@@ -2,20 +2,28 @@
 
 ## What I built
 
-A single-page membership explorer using plain HTML, CSS, and vanilla JavaScript — no frameworks, no build step. Open `index.html` in any browser and it works immediately.
+A single-page membership explorer using plain HTML, CSS, and vanilla JavaScript. No frameworks, no build step — open `index.html` in any browser and it works.
 
-## Why this approach
+## Approach
 
-The brief said to avoid recreating the flyer as a table and to think about making the information useful for a real person. The core friction a prospective member faces is: *"I don't know when I'd start, so which season price applies to me?"* I made that the central interaction — a season toggle at the top that immediately updates pricing across all four cards.
+Rather than recreating the flyer as a static table, I focused on making the information useful for a real person making a decision. The page is structured in three layers:
 
-The card layout lets users scan the plans side by side without scrolling through a dense table. Key differentiators surface at a glance (complimentary rounds, coupon counts, Play Day savings), and the full benefit detail is available on demand behind an expand button — it's there when you want it, out of the way when you don't.
+1. **Why join** — a brief benefits section that builds value before showing any prices
+2. **Plan cards** — seasonal pricing toggle (Year-Round / Summer / Winter) that updates all four cards at once, with expandable benefit details per plan
+3. **Comparison table** — lets the user pick which plans to compare side by side, with checkmarks and notes instead of walls of text
 
-Below the cards, a full benefit comparison table gives users a second, more analytical view of the same information. Cards are great for first impressions and emotional buy-in, but when someone is close to a decision they want to compare directly — row by row — without having to mentally hold one plan while reading another. The table makes that effortless: a checkmark means the plan includes it, a red cross means it doesn't, and a short note under each checkmark explains the exact value (how many rounds, how much off, which kind of discount). This way a user can immediately see where the value gap is between, say, Silver and Gold, or why Platinum commands a higher price — without having to read paragraphs of fine print.
+I also added a short **"Help me choose" quiz** that asks three questions about frequency, season preference, and priorities, then recommends the most fitting plan and scrolls to it.
 
-## What I would improve with more time
+## File structure
 
-- A short "Help me choose" quiz that asks 2–3 questions (how often do you play? do you want year-round or seasonal?) and scrolls to or highlights the recommended plan.
-- Smooth CSS transitions when prices update between seasons instead of a hard re-render.
-- A sticky summary bar when a user clicks "Select" on a plan, so they can continue reading while seeing their chosen plan.
-- Accessible focus management when panels expand/collapse.
-- Print stylesheet so the full comparison can be saved as a PDF.
+```
+index.html   — layout
+data.js      — all membership data and quiz questions hardcoded
+style.css    — design and brand colors
+app.js       — all interactivity
+README.md    — this file
+```
+
+## With more time
+
+I would invest in UX/UI improvements: smoother transitions when prices update between seasons, a more polished mobile experience, better visual hierarchy on the comparison table for quick scanning, and a "Select this plan" call-to-action flow on each card. The quiz result screen could also feel more celebratory and less utilitarian.
